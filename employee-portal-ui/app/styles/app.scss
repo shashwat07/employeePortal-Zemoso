@@ -1,0 +1,72 @@
+@import 'ember-paper';
+@import "ember-modal-dialog/ember-modal-structure";
+@import "ember-modal-dialog/ember-modal-appearance";
+@import "ember-searchable-select/style";
+
+$primary: "teal";
+$accent: "light-green";
+$warn: "pink";
+
+
+.image--cover {
+  width: 56%;
+  height: 56%;
+  border-radius: 50%;
+  margin: 5% 15%;
+
+  object-fit: cover;
+  object-position: center right;
+}
+
+md-card md-card-title md-card-title-text:only-child .md-subhead {
+  padding-top: 0px;
+}
+
+md-card md-card-title {
+  display: flex;
+  -webkit-box-flex: 1;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  flex-direction: row;
+  padding: 0% 5% 5%;
+  flex: 1 1 auto;
+}
+
+md-card {
+  color: rgba(0, 0, 0, 0.87);
+  background-color: white;
+  border-radius: 2px;
+  padding: 1% 1%;
+  margin: 1% 4%;
+}
+
+.md-headline {
+  font-size: 24px;
+  font-weight: 400;
+}
+
+md-icon.md-default-theme, md-icon {
+  color: rgba(0, 0, 0, 0.87);
+  padding : 0px 0px 7px 0px;
+}
+
+.circle {
+  font-size: 24px;
+  border: 2px solid #666666;
+  border-radius: 50%;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";
+  filter: alpha(opacity=60);
+  opacity: 0.6;
+
+  -webkit-box-shadow: 0 0 1px 0px rgb( 255, 255, 255);
+  box-shadow: 0 0 1px 0px rgb( 255, 255, 255);
+  width: 130px;
+  height: 130px;
+  z-index: 86;
+
+  -webkit-transition: background-color .5s ease-in-out;
+  -moz-transition: background-color .5s ease-in-out;
+  -o-transition: background-color .5s ease-in-out;
+  -ms-transition: background-color .5s ease-in-out;
+  transition: background-color .5s ease-in-out;
+}

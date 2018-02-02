@@ -1,0 +1,12 @@
+
+{{#paper-card as |card|}}
+  <img src={{imageUrl}} alt="employee" class="image--cover">
+  {{#card.title as |title|}}
+    {{#title.text as |text|}}
+      {{#text.headline}}{{firstName}} {{middleName}} {{lastName}}{{/text.headline}}
+      {{#text.subhead}}{{role}}{{/text.subhead}}
+      {{#text.subhead}}{{phoneNumber}}{{/text.subhead}}
+    {{/title.text}}
+  {{/card.title}}
+{{/paper-card}}
+

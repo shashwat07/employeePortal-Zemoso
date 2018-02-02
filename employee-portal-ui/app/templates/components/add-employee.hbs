@@ -1,0 +1,96 @@
+{{company-toolbar title="ZeMoSo Employee Portal"}}
+
+  <p>{{paper-icon "person"}}  Name</p>
+  <div class="layout-row flex">
+    <div class="flex-25">
+      {{paper-input label="First Name" value=employee.firstName onChange=(action (mut employee.firstName)) required=true maxlength=20}}
+    </div>
+    <div class="flex-25">
+      {{paper-input label="Middle Name" value=employee.middleName onChange=(action (mut employee.middleName)) maxlength=20}}
+    </div>
+    <div class="flex-25">
+      {{paper-input label="Last Name" value=employee.lastName onChange=(action (mut employee.lastName)) required=true maxlength=20}}
+    </div>
+  </div>
+
+
+  <p>{{paper-icon "work"}}  Profile Details</p>
+  <div class="layout-row flex">
+    <div class="flex-25">
+      {{#paper-select options=roles label="Role" required=true selected=employee.role onChange=(action (mut employee.role)) as |role|}}
+        {{role}}
+      {{/paper-select}}
+    </div>
+    <!--Location-->
+    <div class="flex-25">
+      {{#paper-select options=locations label="Location" selected=employee.location icon="place" onChange=(action (mut employee.location)) as |location| }}
+        {{location}}
+      {{/paper-select}}
+    </div>
+    <!--Start Date-->
+    <div class="flex-25">
+      {{paper-input class="flex" label="Start date" type="date" value=employee.startDate onChange=(action (mut employee.startDate)) required=true}}
+    </div>
+  </div>
+
+
+  <p>{{paper-icon "phone"}}  Contact</p>
+  <div class="layout-row flex">
+    <div class="flex-25">
+      {{paper-input label="Email " type="email" value=employee.email onChange=(action (mut employee.email)) required=true}}
+    </div>
+    <div class="flex-25">
+      {{paper-input label="Phone Number " type="number" value=employee.phoneNumber required=true onChange=(action (mut employee.phoneNumber)) minlength=10 maxlength=10 }}
+    </div>
+  </div>
+
+  <p>{{paper-icon "assignment"}}  About</p>
+  <div class="layout-column flex-70">
+    {{paper-chips removeItem=(action "removeSkill") addItem=(action "addSkill") placeholder="Add your skills"
+                  content=skills options=remainingSkills}}
+    {{paper-input textarea=true block=true label="Biography" maxlength=300 passThru=(hash rows=3 maxRows=5)
+                  value=employee.bio onChange=(action (mut employee.bio))}}
+  </div>
+
+  <p>{{paper-icon "face"}}  Employee Image</p>
+  <div class="layout flex-70">
+    {{paper-input label="Image URL" value=employee.imageUrl onChange=(action (mut employee.imageUrl))}}
+  </div>
+
+
+
+
+
+  <p>{{paper-icon "assessment"}}  Reports To</p>
+  <div class="layout-column flex-30">
+    {{!paper-autocomplete
+      placeholder="Will Report to.."
+      notFoundMessage="Oops \"%@\" not found"
+      source=emp.firstName lookupKey="firstName"
+      model=employee}}
+  </div>
+
+
+
+  <p>{{paper-icon "people"}}  Team</p>
+  <div class="layout-row flex">
+    <!--Department-->
+    <div class="flex-25">
+      {{#paper-select options=departments label="Department" selected=employee.department onChange=(action (mut employee.department)) as |department|}}
+        {{department}}
+      {{/paper-select}}
+    </div>
+    <!--Project-->
+    <div class="flex-25">
+      {{#paper-select options=projects label="Project" selected=employee.project onChange=(action (mut employee.project)) as |project| }}
+        {{project}}
+      {{/paper-select}}
+    </div>
+  </div>
+
+  <div class="layout-column">
+    {{#link-to "employees"}}
+      {{#paper-button onClick=(action "addEmployee")}}Add Employee{{/paper-button}}
+    {{/link-to}}
+  </div>
+
