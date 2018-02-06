@@ -1,0 +1,102 @@
+<div class="custom-background">
+<div class="layout-row layout-padding layout-align-center">
+  <div class="layout-column flex-40">
+    <div class="layout-padding ">
+      <div class="layout-column flex">
+        <div class="layout-column flex">
+          <p id="name">{{employee.firstName}} {{employee.middleName}} {{employee.lastName}}</p>
+        </div>
+        <div class="layout-column flex">
+          <p id="role">{{employee.role}}</p>
+        </div>
+      </div>
+
+      <div class="layout-column flex">
+      <!--Location-->
+        <div class="layout-column flex">
+          <p id="textWhite">{{paper-icon 'domain' class="white"}} {{employee.location}}</p>
+        </div>
+        <!--Start Date-->
+        <div class="layout-column flex">
+          <p id="textWhite">{{paper-icon 'today' class="white"}} Started {{employee.startDate}}</p>
+        </div>
+      </div>
+      {{#link-to 'edit-employee' employee}}
+        {{#paper-button raised=true primary=true}}Edit{{/paper-button}}
+      {{/link-to}}
+    </div>
+
+    {{#paper-card}}
+      <strong>{{paper-icon "account box"}}  Contact</strong>
+      <div class="layout-column flex">
+        <div class="layout-row flex">
+          <div class="flex-35">
+            <p>Email</p>
+          </div>
+          <div class="flex-65">
+            <p>{{employee.email}}</p>
+          </div>
+        </div>
+        <div class="layout-row flex">
+          <div class="flex-35">
+            <p>Mobile</p>
+          </div>
+          <div class="flex-65">
+            <p>{{employee.phoneNumber}}</p>
+          </div>
+        </div>
+
+      </div>
+
+      {{paper-divider}}
+      <br>
+      <strong>{{paper-icon "thumb up"}}  About</strong>
+      <div class="layout-column flex">
+        <br>
+        Bio
+        <div class="layout-column flex">
+          <p>{{employee.bio}}</p>
+        </div>
+        <div class="layout-column flex">
+          Skills
+          <br>
+          {{paper-chips readOnly=true content=employee.skills}}
+        </div>
+      </div>
+    {{/paper-card}}
+  </div>
+
+  <div class="layout-column flex-30">
+    <div class="layout-padding">
+      {{#paper-card}}
+        <div class="flex">
+          <img src={{employee.image}} alt="employee-img" class="image-rectangle">
+        </div>
+
+        <div class="layout-column flex">
+          <strong>Teams </strong>
+          <!--Department-->
+          <div class="layout-column flex">
+            <p class="team"> {{employee.department}}</p>
+          </div>
+          <!--Project-->
+          <div class="layout-column flex">
+            <p class="team"> {{employee.project}}</p>
+          </div>
+        </div>
+
+        {{paper-divider}}
+
+        <div class="layout-column">
+          <br>
+        <strong>{{paper-icon "assessment"}}  Reports To</strong>
+
+          <!--<div class="layout-column flex">-->
+            <p>{{paper-icon 'mood'}} {{employee.reportsTo}}</p>
+          <!--</div>-->
+        </div>
+      {{/paper-card}}
+    </div>
+  </div>
+</div>
+</div>

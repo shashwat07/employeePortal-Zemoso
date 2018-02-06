@@ -33,15 +33,19 @@ public class EmployeeController {
         return employeeService.getEmployee(id);
     }
 
-    @RequestMapping(method=RequestMethod.POST, value="/newEmployees")
+    @RequestMapping(method=RequestMethod.POST, value="/employees")
     public void addEmployee(@RequestBody Map<String, Object> data){
+        System.out.println(data);
         final ObjectMapper mapper = new ObjectMapper(); // jackson's objectmapper
-        Employee employee = mapper.convertValue(data.get("newEmployee"), Employee.class);
+        Employee employee = mapper.convertValue(data.get("employee"), Employee.class);
         employeeService.addEmployee(employee);
     }
 
     @RequestMapping(method=RequestMethod.PUT, value="/employees/{id}")
-    public void updateEmployee(@PathVariable String id, @RequestBody Employee employee){
+    public void updateEmployee(@PathVariable String id, @RequestBody Map<String, Object> data){
+        final ObjectMapper mapper = new ObjectMapper(); // jackson's objectmapper
+        Employee employee = mapper.convertValue(data.get("employee"), Employee.class);
+        employee.setId(id);
         employeeService.updateEmployee(id, employee);
     }
 

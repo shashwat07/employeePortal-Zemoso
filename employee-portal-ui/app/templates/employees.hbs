@@ -1,32 +1,33 @@
-{{company-toolbar title="ZeMoSo Employee Portal"}}
-
 <div class="layout-row layout-wrap layout-padding " align="center">
   <!--Add/Count Employee Card-->
   <div class="flex-25 flex-md-25 flex-sm-33 flex-xs-50">
-    {{#paper-card as |card|}}
-      <br><br>
+
+      <div class="card-out">
+  <div class="flex margin-30t">
       <div class="circle">
-        <br>{{model.length}}<br>
-        Employees
+        <br><p id="count">{{model.length}}</p>
+        <p id="mini-text">EMPLOYEES</p>
       </div>
+
+      {{!#card.title as |title|}}
+        {{!#title.text as |text|}}
+          <div class="layout">
+          {{#link-to 'new-employee'}}
+            {{#paper-button raised=true primary=true}}+ Add Employee{{/paper-button}}
+          {{/link-to}}
+          </div>
+        {{!/title.text}}
+      {{!/card.title}}
       <br>
-      {{#card.title as |title|}}
-        {{#title.text as |text|}}
-            {{#link-to 'new-employee'}}
-              {{#paper-button primary=true}}+ Add Employee{{/paper-button}}
-            {{/link-to}}
-        {{/title.text}}
-      {{/card.title}}
-      <br>
-    {{/paper-card}}
+      </div>
+      </div>
   </div>
   <!--Employee Cards-->
   {{#each model as |employee|}}
-  <div class = "flex-25 flex-md-25 flex-sm-33 flex-xs-50">
-    {{employee-card firstName=employee.firstName middleName=employee.middleName imageUrl=employee.imageUrl
-                    lastName=employee.lastName role=employee.role phoneNumber=employee.phoneNumber}}
-  </div>
-{{/each}}
+    <div class = "flex-25 flex-md-25 flex-sm-33 flex-xs-50">
+      {{employee-card employee=employee}}
+    </div>
+  {{/each}}
 </div>
 
 

@@ -1,12 +1,79 @@
+$primary: "teal";
+$accent: "brown";
+$warn: "pink";
+
 @import 'ember-paper';
 @import "ember-modal-dialog/ember-modal-structure";
 @import "ember-modal-dialog/ember-modal-appearance";
 @import "ember-searchable-select/style";
 
-$primary: "teal";
-$accent: "light-green";
-$warn: "pink";
 
+
+#count{
+  font-size: 56px;
+  margin:0;
+}
+
+#name{
+  font-size: 32px;
+  margin:2px 0;
+  color:white;
+}
+
+#role{
+  font-size: 22px;
+  margin:2px 0;
+  color:white;
+}
+
+#text{
+  font-size: 16px;
+  margin:1px 0;
+}
+
+#team{
+  margin:10px 0;
+}
+
+/*#profile md-input-container.md-default-theme .md-input, md-input-container .md-input {
+  color: rgba(255, 255, 255, 0.87);
+  border-color: rgba(0, 0, 0, 0.12);
+}*/
+
+.card-out{
+  -webkit-box-flex: 1;
+  -ms-flex: 1 1 33.33%;
+  flex: 1 1 33.33%;
+  max-width: 33.33%;
+  max-height: 100%;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.margin-30t{
+  margin-top: 30%;
+}
+
+#textWhite{
+  font-size: 16px;
+  margin:1px 0;
+  color:white;
+}
+
+#mini-text{
+  font-size: 14px;
+  margin:1px 0;
+}
+
+.custom-background{
+  background-color: color($primary,'500');
+  width: 100%;
+  height: 280px;
+}
+
+md-icon.md-default-theme.white{
+  color:white;
+}
 
 .image--cover {
   width: 56%;
@@ -16,6 +83,20 @@ $warn: "pink";
 
   object-fit: cover;
   object-position: center right;
+}
+
+.image-rectangle {
+  margin: 0 auto;
+  transform-origin: 50% 50%;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+a:-webkit-any-link {
+  text-decoration: none;
 }
 
 md-card md-card-title md-card-title-text:only-child .md-subhead {
@@ -52,7 +133,7 @@ md-icon.md-default-theme, md-icon {
 
 .circle {
   font-size: 24px;
-  border: 2px solid #666666;
+  border: 1px solid #666666;
   border-radius: 50%;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";
   filter: alpha(opacity=60);
@@ -70,3 +151,17 @@ md-icon.md-default-theme, md-icon {
   -ms-transition: background-color .5s ease-in-out;
   transition: background-color .5s ease-in-out;
 }
+
+md-input-container {
+  display: inline-block;
+  position: relative;
+  padding: 2px;
+  margin: 2px;
+  vertical-align: middle;
+}
+
+form {
+  display: -webkit-box;
+  margin-top: 0em;
+}
+
