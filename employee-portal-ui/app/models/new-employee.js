@@ -1,7 +1,7 @@
 import DS from 'ember-data';
 
 export default DS.Model.extend({
-  firstName: DS.attr(),
+  /*firstName: DS.attr(),
   middleName: DS.attr(),
   lastName: DS.attr(),
   role: DS.attr(),
@@ -11,5 +11,5 @@ export default DS.Model.extend({
   phoneNumber: DS.attr(),
   bio: DS.attr(),
   skills: DS.attr(),
-  imageUrl: DS.attr()
+  imageUrl: DS.attr()*/
 });

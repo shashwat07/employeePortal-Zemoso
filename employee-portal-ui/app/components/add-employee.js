@@ -5,10 +5,30 @@ import { map, filter } from '@ember/object/computed';
 import { computed } from '@ember/object';
 
 export default Component.extend({
-  setBySearchable: null,
+  init() {
+    this.initialize();
+    this._super();
+  },
+
+  initialize() {
+    var url = window.location.href;
+    var id = url.substring(url.lastIndexOf('/') + 1);
+    this.getEmployee(id).then((data) => {
+      this.set('employee', data);
+    });
+  },
+
+  getEmployee(id) {
+    const store = this.get('store');
+    return store.findRecord('employee',id);
+  },
+
+  router: Ember.inject.service(),
   employee:{},
   store: service(),
   updatedEmployee:{},
+  imageUrl : '',
+  skillSet : '',
 
   roles:['Software Developer','Senior Software Developer','Project Manager','Business Analyst'],
   locations:['Bangalore', 'Hyderabad', 'Pune', 'Noida', 'New York', 'California', 'Moscow'],
@@ -17,9 +37,16 @@ export default Component.extend({
   manager:'',
   names: ['Stefan', 'Miguel', 'Tomster', 'Pluto'],
 
-  skills: A([]),
+  skills: computed('employee.skillSet', function () {
+    if(typeof this.get('employee.skillSet') === "undefined"){
+      return A([]);
+    }
+    else{
+      return A(this.get('employee.skillSet').split(','));
+    }
+  }),
 
-  allSkills: A(['Ember','Java','HTML','CSS','JavaScript','Python']),
+  allSkills: A(['Ember','Java','HTML','CSS','JavaScript','Python', 'Ruby', 'Pearl', 'Angular']),
 
   remainingSkills: computed('skills.length', function() {
     return this.get('allSkills').filter((source) => {
@@ -30,8 +57,17 @@ export default Component.extend({
   }),
 
   actions: {
+
+
     addEmployee(){
+
+      let self = this;
+
+      this.set('skillSet',this.get('skills').toString());
+
       let employeeData = this.get('employee');
+      employeeData['image'] = this.get('imageUrl');
+      employeeData['skillSet'] = this.get('skillSet');
       let data;
       if(typeof employeeData['id'] === "undefined"){
         data = this.get('store').createRecord('employee',{
@@ -44,33 +80,17 @@ export default Component.extend({
           email : employeeData['email'],
           phoneNumber : employeeData['phoneNumber'],
           bio : employeeData['bio'],
-          //skills : this.get('skills'),
+          skillSet : employeeData['skillSet'],
           department : employeeData['department'],
           project : employeeData['project'],
           image: employeeData['image'],
           reportsTo: employeeData['reportsTo']
         });
+
         data.save();
       }
       else{
         this.get('store').findRecord('employee', employeeData['id']).then(function(employee) {
-          let updatedEmployee ={};
-          updatedEmployee['id'] = employeeData.get('id');
-          updatedEmployee['firstName'] = employeeData.get('firstName');
-          updatedEmployee['middleName'] = employeeData.get('middleName');
-          updatedEmployee['lastName'] = employeeData.get('lastName');
-          updatedEmployee['role'] = employeeData.get('role');
-          updatedEmployee['location'] = employeeData.get('location');
-          updatedEmployee['startDate'] = employeeData.get('startDate');
-          updatedEmployee['email'] = employeeData.get('email');
-          updatedEmployee['phoneNumber'] = employeeData.get('phoneNumber');
-          updatedEmployee['bio'] = employeeData.get('bio');
-          //updatedEmployee['skills'] = this.get('skills');
-          updatedEmployee['department'] = employeeData.get('department');
-          updatedEmployee['project'] = employeeData.get('project');
-          updatedEmployee['image'] = employeeData.get('image');
-          updatedEmployee['reportsTo'] = employeeData.get('reportsTo'),
-
           employee.save();
         });
       }
@@ -86,12 +106,22 @@ export default Component.extend({
     },
 
     upload: function(event) {
-      const reader = new FileReader();
+      const r = new FileReader();
       const file = event.target.files[0];
-      if (file) {
-        reader.readAsDataURL(file);
+
+      getBase64(file).then(
+        data => this.set('imageUrl',data),
+      );
+
+       function getBase64(file) {
+        return new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.readAsDataURL(file);
+          reader.onload = () => resolve(reader.result);
+          reader.onerror = error => reject(error);
+        });
       }
+
     }
   }
-
 });

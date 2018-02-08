@@ -5,19 +5,25 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
 @Table(name="department")
 public class Department {
     @Id
+    //@GeneratedValue(strategy= GenerationType.AUTO)
     private int id;
     private String name;
+
+    public Department(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public Department() {
+
+    }
 }
 

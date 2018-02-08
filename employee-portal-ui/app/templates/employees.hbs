@@ -1,26 +1,21 @@
-<div class="layout-row layout-wrap layout-padding " align="center">
+{{header-tabs tabNumber=0 isPrimary = false}}
+<div class="layout-row layout-wrap layout-padding showEmployees" align="center">
   <!--Add/Count Employee Card-->
   <div class="flex-25 flex-md-25 flex-sm-33 flex-xs-50">
-
-      <div class="card-out">
-  <div class="flex margin-30t">
-      <div class="circle">
-        <br><p id="count">{{model.length}}</p>
-        <p id="mini-text">EMPLOYEES</p>
-      </div>
-
-      {{!#card.title as |title|}}
-        {{!#title.text as |text|}}
-          <div class="layout">
+    <div class="card-out">
+      <div class="flex margin-30t">
+        <div class="circle">
+          <br><p id="count">{{model.length}}</p>
+          <p id="mini-text">EMPLOYEES</p>
+        </div>
+        <div class="layout">
           {{#link-to 'new-employee'}}
             {{#paper-button raised=true primary=true}}+ Add Employee{{/paper-button}}
           {{/link-to}}
-          </div>
-        {{!/title.text}}
-      {{!/card.title}}
-      <br>
+        </div>
+        <br>
       </div>
-      </div>
+    </div>
   </div>
   <!--Employee Cards-->
   {{#each model as |employee|}}
@@ -29,6 +24,3 @@
     </div>
   {{/each}}
 </div>
-
-
-

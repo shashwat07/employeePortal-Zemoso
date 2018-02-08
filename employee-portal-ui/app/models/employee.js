@@ -10,7 +10,7 @@ export default DS.Model.extend({
   email: DS.attr(),
   phoneNumber: DS.attr(),
   bio: DS.attr(),
-  skills: DS.attr(),
+  skillSet: DS.attr(),
   image: DS.attr(),
   department: DS.attr(),
   project: DS.attr(),

@@ -8,8 +8,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.UUID;
 
 @Entity
 @Getter
@@ -18,11 +16,13 @@ import java.util.UUID;
 @JsonIgnoreProperties
 public class Employee {
     @Id
-    private String id = UUID.randomUUID().toString();
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private Long id;
     private String firstName;
     private String middleName;
     private String lastName;
     private String startDate;
+    @Column(length = 65535, columnDefinition = "text")
     private String image;
     private String email;
     private String phoneNumber;
@@ -32,12 +32,12 @@ public class Employee {
     private String location;
     private String department;
     private String project;
-    private ArrayList<String> skills;
+    private String skillSet;
 
 
     public Employee(){}
 
-    public Employee(String id, String firstName, String middleName, String lastName, String startDate, String image, String email, String phoneNumber, String bio, String reportsTo, String role, String location, ArrayList<String> skills, String department, String project) {
+    public Employee(Long id, String firstName, String middleName, String lastName, String startDate, String image, String email, String phoneNumber, String bio, String reportsTo, String role, String location, String skillSet, String department, String project) {
         this.id = id;
         this.firstName = firstName;
         this.middleName = middleName;
@@ -52,6 +52,7 @@ public class Employee {
         this.location = location;
         this.department = department;
         this.project = project;
-        this.skills = skills;
+        this.skillSet = skillSet;
+
     }
 }

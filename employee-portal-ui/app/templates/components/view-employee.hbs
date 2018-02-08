@@ -1,4 +1,5 @@
-<div class="custom-background">
+{{header-tabs isPrimary=true}}
+<div class="custom-background-view">
 <div class="layout-row layout-padding layout-align-center">
   <div class="layout-column flex-40">
     <div class="layout-padding ">
@@ -60,7 +61,7 @@
         <div class="layout-column flex">
           Skills
           <br>
-          {{paper-chips readOnly=true content=employee.skills}}
+          {{paper-chips readOnly=true content=skillSet}}
         </div>
       </div>
     {{/paper-card}}
@@ -90,10 +91,7 @@
         <div class="layout-column">
           <br>
         <strong>{{paper-icon "assessment"}}  Reports To</strong>
-
-          <!--<div class="layout-column flex">-->
             <p>{{paper-icon 'mood'}} {{employee.reportsTo}}</p>
-          <!--</div>-->
         </div>
       {{/paper-card}}
     </div>

@@ -1,113 +1,5 @@
-<!--
-<div class="layout-row layout-padding layout-align-center">
-  {{!#paper-form onSubmit=(action "addEmployee") as |form|}}
-    <div class="layout-column flex-40">
-      <div class="layout-padding ">
-        <p>{{!paper-icon "person"}}  Profile</p>
-        <div class="layout-row flex">
-          <div class="layout-column flex-33">
-            {{!form.input label="First Name" value=employee.firstName  onChange=(action (mut employee.firstName)) required=true maxlength=20}}
-          </div>
-          <div class="layout-column flex-33">
-            {{!form.input label="Middle Name" value=employee.middleName onChange=(action (mut employee.middleName)) maxlength=20}}
-          </div>
-          <div class="layout-column flex-33">
-            {{!form.input label="Last Name" value=employee.lastName onChange=(action (mut employee.lastName)) required=true maxlength=20}}
-          </div>
-        </div>
-
-        <div class="layout-column flex">
-          <div class="layout-column flex">
-            {{!#paper-select options=roles label="Role" required=true selected=employee.role onChange=(action (mut employee.role)) as |role|}}
-              {{!role}}
-            {{!/paper-select}}
-          </div>
-          &lt;!&ndash;Location&ndash;&gt;
-          <div class="layout-column flex">
-            {{!#paper-select options=locations label="Location" selected=employee.location onChange=(action (mut employee.location)) as |location| }}
-              {{!location}}
-            {{!/paper-select}}
-          </div>
-          &lt;!&ndash;Start Date&ndash;&gt;
-          <div class="layout-column flex">
-            {{!form.input class="flex" label="Start date" type="date" value=employee.startDate onChange=(action (mut employee.startDate)) required=true}}
-          </div>
-        </div>
-      </div>
-
-      {{!#paper-card}}
-        <p>{{!paper-icon "account box"}}  Contact</p>
-        <div class="layout-column flex">
-          <div class="layout-column flex">
-            {{!form.input label="Email " type="email" value=employee.email onChange=(action (mut employee.email)) required=true}}
-          </div>
-          <div class="layout-column flex">
-            {{!form.input label="Phone Number " type="number" value=employee.phoneNumber required=true onChange=(action (mut employee.phoneNumber)) minlength=10 maxlength=10 }}
-          </div>
-        </div>
-
-        {{!paper-divider}}
-
-        <p>{{!paper-icon "thumb up"}}  About</p>
-        <div class="layout-column flex">
-          <div class="layout-column flex">
-            {{!form.input textarea=true block=true label="Bio" maxlength=300 passThru=(hash rows=3 maxRows=5)
-                          value=employee.bio onChange=(action (mut employee.bio))}}
-          </div>
-          <div class="layout-column flex">
-            {{!paper-chips removeItem=(action "removeSkill") addItem=(action "addSkill") placeholder="Add your skills"
-                          content=skills options=remainingSkills}}
-          </div>
-        </div>
-      {{!/paper-card}}
-    </div>
-
-    <div class="layout-column flex-30">
-      {{!#paper-card}}
-        <p>{{!paper-icon "face"}}  Employee Image</p>
-        <div class="layout flex">
-          &lt;!&ndash;<input multiple="true" onchange={{!action "upload"}} accept="image/png,image/jpeg" type="file"/>&ndash;&gt;
-          {{!form.input label="Image URL" value=employee.image onChange=(action (mut employee.image))}}
-        </div>
-
-        <p>{{!paper-icon "people"}}  Team</p>
-        <div class="layout-column flex">
-          &lt;!&ndash;Department&ndash;&gt;
-          <div class="layout-column flex">
-            {{!#paper-select options=departments label="Department" selected=employee.department onChange=(action (mut employee.department)) as |department|}}
-              {{!department}}
-            {{!/paper-select}}
-          </div>
-          &lt;!&ndash;Project&ndash;&gt;
-          <div class="layout-column flex">
-            {{!#paper-select options=projects label="Project" selected=employee.project onChange=(action (mut employee.project)) as |project| }}
-              {{!project}}
-            {{!/paper-select}}
-          </div>
-        </div>
-
-        {{!paper-divider}}
-
-
-        <p>{{!paper-icon "assessment"}}  Reports To</p>
-        <div class="layout-column flex-30">
-          {{!paper-autocomplete
-            placeholder="Will Report to.."
-            notFoundMessage="Oops \"%@\" not found"
-            source=emp.firstName lookupKey="firstName"
-            model=employee}}
-        </div>
-
-        <div class="layout-column flex">
-            {{!#form.submit-button raised=true primary=true}}Save Employee{{!/form.submit-button}}
-        </div>
-      {{!/paper-card}}
-    </div>
-  {{!/paper-form}}
-</div>-->
-
-
-<div class="custom-background">
+{{header-tabs isPrimary=true}}
+<div class="custom-background-add">
   <div class="layout-row layout-padding layout-align-center">
     {{#paper-form onSubmit=(action "addEmployee") as |form|}}
       <div class="layout-column flex-40">
@@ -180,23 +72,6 @@
             </div>
             Skills
             <div class="layout-column flex">
-              {{!paper-contact-chips
-                readOnly=readOnly
-                removeItem=(action "removeSkill")
-                addItem=(action "addSkill")
-                placeholder="Add skills"
-                content=skills
-                options=remainingSkills}}
-
-              {{!paper-chips
-                removeItem=(action "removeSkill")
-                readOnly=false
-                addItem=(action "addSkill")
-                placeholder="Add your skills"
-                content=skills
-                options=remainingSkills
-                requireMatch=true}}
-
               {{paper-chips
                 readOnly=readOnly
                 removeItem=(action "removeSkill")
@@ -214,8 +89,9 @@
         {{#paper-card}}
           <br>
           <div class="layout-column flex">
-            <!--<img src={{!employee.image}} alt="employee-img" class="image-rectangle">-->
-            {{form.input label="Image URL" value=employee.image onChange=(action (mut employee.image))}}
+            <img src={{employee.image}} alt="employee-img" class="image-rectangle">
+            <input multiple="true" value="employee.image" onchange={{action "upload"}} accept="image/png,image/jpeg" type="file"/>
+            <!--<img id="blah" src=previewSrc />-->
           </div>
 
 
@@ -248,8 +124,13 @@
               Whoops! could not find!
             {{/paper-autocomplete}}
           </div>
-          <div class="layout-column flex">
-            {{#form.submit-button raised=true primary=true}}Save{{/form.submit-button}}
+          <div class="layout-row flex">
+            <div class="layout-column flex-50">
+              {{#form.submit-button raised=true primary=true}}Save{{/form.submit-button}}
+            </div>
+            <div class="layout-column flex-50">
+              {{#paper-button href='../employees' raised=true warn=true}}Cancel{{/paper-button}}
+            </div>
           </div>
         {{/paper-card}}
       </div>

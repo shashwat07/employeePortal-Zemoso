@@ -17,7 +17,7 @@ public class EmployeeServiceImpl implements  EmployeeService{
         return (List<Employee>)employeeRepository.findAll();
     }
 
-    public Employee getEmployee(String id){
+    public Employee getEmployee(Long id){
         return employeeRepository.findOne(id);
     }
 
@@ -25,11 +25,11 @@ public class EmployeeServiceImpl implements  EmployeeService{
         employeeRepository.save(employee);
     }
 
-    public void updateEmployee(String id, Employee employee) {
+    public void updateEmployee(Long id, Employee employee) {
         employeeRepository.save(employee);
     }
 
-    public void deleteEmployee(String id){
+    public void deleteEmployee(Long id){
         employeeRepository.delete(id);
     }
 }

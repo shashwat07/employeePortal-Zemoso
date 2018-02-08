@@ -1,0 +1,12 @@
+{{#paper-tabs center=center stretch=stretch borderBottom=borderBottom selected=tabNumber primary=isPrimary
+              onChange=(action (mut selectedBasicTab)) as |tabs|}}
+  {{#tabs.tab}}
+    Everyone
+  {{/tabs.tab}}
+  {{#tabs.tab}}
+    Teams
+  {{/tabs.tab}}
+  {{#tabs.tab}}
+    Offices
+  {{/tabs.tab}}
+{{/paper-tabs}}

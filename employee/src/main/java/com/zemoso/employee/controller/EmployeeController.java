@@ -29,28 +29,36 @@ public class EmployeeController {
     }
 
     @RequestMapping("/employees/{id}")
-    public Employee getEmployee(@PathVariable String id){
-        return employeeService.getEmployee(id);
+    public ResponseEntity<Map> getEmployee(@PathVariable Long id){
+        Employee employee = employeeService.getEmployee(id);
+        Map<String, Object> responseBody = new HashMap<>();
+        responseBody.put("employee", employee);
+        return new ResponseEntity<>(responseBody, HttpStatus.OK);
     }
 
     @RequestMapping(method=RequestMethod.POST, value="/employees")
     public void addEmployee(@RequestBody Map<String, Object> data){
-        System.out.println(data);
-        final ObjectMapper mapper = new ObjectMapper(); // jackson's objectmapper
+        final ObjectMapper mapper = new ObjectMapper();
         Employee employee = mapper.convertValue(data.get("employee"), Employee.class);
+        if(employee.getImage().equals("")){
+            employee.setImage("http://trade-mgmt.com/wp-content/uploads/2016/08/facebook-default-no-profile-pic.jpg");
+        }
         employeeService.addEmployee(employee);
     }
 
     @RequestMapping(method=RequestMethod.PUT, value="/employees/{id}")
-    public void updateEmployee(@PathVariable String id, @RequestBody Map<String, Object> data){
-        final ObjectMapper mapper = new ObjectMapper(); // jackson's objectmapper
+    public void updateEmployee(@PathVariable Long id, @RequestBody Map<String, Object> data){
+        final ObjectMapper mapper = new ObjectMapper();
         Employee employee = mapper.convertValue(data.get("employee"), Employee.class);
         employee.setId(id);
+        if(employee.getImage().equals("")){
+            employee.setImage("http://trade-mgmt.com/wp-content/uploads/2016/08/facebook-default-no-profile-pic.jpg");
+        }
         employeeService.updateEmployee(id, employee);
     }
 
     @RequestMapping(method=RequestMethod.DELETE, value="/employees/{id}")
-    public void deleteEmployee(@PathVariable String id){
+    public void deleteEmployee(@PathVariable Long id){
         employeeService.deleteEmployee(id);
     }
 }

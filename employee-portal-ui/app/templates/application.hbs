@@ -1,2 +1,16 @@
-{{company-toolbar title="ZeMoSo Employee Portal"}}
+{{#paper-toolbar}}
+  {{#paper-toolbar-tools}}
+    <div class="layout-row flex">
+      <div class="layout-padding layout-column">
+        <h5>
+          {{#link-to 'employees'}}
+            <p>Urban Wonders Studio</p>
+          {{/link-to}}
+        </h5>
+      </div>
+
+    </div>
+  {{/paper-toolbar-tools}}
+{{/paper-toolbar}}
+
 {{outlet}}
