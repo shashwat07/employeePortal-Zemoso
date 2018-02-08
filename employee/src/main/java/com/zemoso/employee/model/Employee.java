@@ -14,6 +14,8 @@ import javax.persistence.*;
 @Setter
 @Table(name = "employee_details")
 @JsonIgnoreProperties
+@AllArgsConstructor
+@NoArgsConstructor
 public class Employee {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
@@ -33,26 +35,4 @@ public class Employee {
     private String department;
     private String project;
     private String skillSet;
-
-
-    public Employee(){}
-
-    public Employee(Long id, String firstName, String middleName, String lastName, String startDate, String image, String email, String phoneNumber, String bio, String reportsTo, String role, String location, String skillSet, String department, String project) {
-        this.id = id;
-        this.firstName = firstName;
-        this.middleName = middleName;
-        this.lastName = lastName;
-        this.startDate = startDate;
-        this.image = image;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.bio = bio;
-        this.reportsTo = reportsTo;
-        this.role = role;
-        this.location = location;
-        this.department = department;
-        this.project = project;
-        this.skillSet = skillSet;
-
-    }
 }

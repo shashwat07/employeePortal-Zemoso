@@ -16,6 +16,7 @@ import java.util.Map;
 @RequestMapping(value = "/api")
 public class EmployeeController {
 
+    public static final String EMPLOYEE = "employee";
     @Autowired
     private EmployeeService employeeService;
 
@@ -32,14 +33,14 @@ public class EmployeeController {
     public ResponseEntity<Map> getEmployee(@PathVariable Long id){
         Employee employee = employeeService.getEmployee(id);
         Map<String, Object> responseBody = new HashMap<>();
-        responseBody.put("employee", employee);
+        responseBody.put(EMPLOYEE, employee);
         return new ResponseEntity<>(responseBody, HttpStatus.OK);
     }
 
     @RequestMapping(method=RequestMethod.POST, value="/employees")
     public void addEmployee(@RequestBody Map<String, Object> data){
         final ObjectMapper mapper = new ObjectMapper();
-        Employee employee = mapper.convertValue(data.get("employee"), Employee.class);
+        Employee employee = mapper.convertValue(data.get(EMPLOYEE), Employee.class);
         if(employee.getImage().equals("")){
             employee.setImage("http://trade-mgmt.com/wp-content/uploads/2016/08/facebook-default-no-profile-pic.jpg");
         }
@@ -49,7 +50,7 @@ public class EmployeeController {
     @RequestMapping(method=RequestMethod.PUT, value="/employees/{id}")
     public void updateEmployee(@PathVariable Long id, @RequestBody Map<String, Object> data){
         final ObjectMapper mapper = new ObjectMapper();
-        Employee employee = mapper.convertValue(data.get("employee"), Employee.class);
+        Employee employee = mapper.convertValue(data.get(EMPLOYEE), Employee.class);
         employee.setId(id);
         if(employee.getImage().equals("")){
             employee.setImage("http://trade-mgmt.com/wp-content/uploads/2016/08/facebook-default-no-profile-pic.jpg");

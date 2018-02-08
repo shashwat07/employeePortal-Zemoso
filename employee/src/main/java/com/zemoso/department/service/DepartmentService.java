@@ -17,14 +17,6 @@ public class DepartmentService {
     private DepartmentRepository departmentRepository;
 
     public void initialize(){
-        /*departmentRepository.save(Arrays.asList(
-                new Department(1,"Business"),
-                new Department(2,"Marketing"),
-                new Department(3,"Operations"),
-                new Department(4,"Technology"),
-                new Department(5,"Human Resource")
-        ));*/
-
         List<Department> depts = Arrays.asList(
                 new Department(1,"Business"),
                 new Department(2,"Marketing"),
@@ -36,8 +28,6 @@ public class DepartmentService {
         for (Department dep : depts){
             departmentRepository.save(dep);
         }
-
-//        departmentRepository.save(depts);
     }
 
     public List<Department> getAllDepartments(){

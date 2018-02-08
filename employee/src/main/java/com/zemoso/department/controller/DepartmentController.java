@@ -26,24 +26,4 @@ public class DepartmentController {
         responseBody.put("departments", departments);
         return new ResponseEntity<>(responseBody, HttpStatus.OK);
     }
-
-    /*@RequestMapping("/departments/{id}")
-    public Department getDepartment(@PathVariable String id){
-        return departmentService.getDepartment(id);
-    }
-
-    @RequestMapping(method=RequestMethod.POST, value="/departments")
-    public void addDepartment(@RequestBody Department department){
-        departmentService.addDepartment(department);
-    }
-
-    @RequestMapping(method=RequestMethod.PUT, value="/departments/{id}")
-    public void updateDepartment(@PathVariable String id, @RequestBody Department department){
-        departmentService.updateDepartment(id, department);
-    }
-
-    @RequestMapping(method=RequestMethod.DELETE, value="/departments/{id}")
-    public void deleteDepartment(@PathVariable String id){
-        departmentService.deleteDepartment(id);
-    }*/
 }

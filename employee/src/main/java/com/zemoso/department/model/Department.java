@@ -11,19 +11,13 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Table(name="department")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Department {
     @Id
-    //@GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private int id;
     private String name;
 
-    public Department(int id, String name) {
-        this.id = id;
-        this.name = name;
-    }
-
-    public Department() {
-
-    }
 }
 

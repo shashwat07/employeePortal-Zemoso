@@ -60,9 +60,6 @@ export default Component.extend({
 
 
     addEmployee(){
-
-      let self = this;
-
       this.set('skillSet',this.get('skills').toString());
 
       let employeeData = this.get('employee');
@@ -106,9 +103,7 @@ export default Component.extend({
     },
 
     upload: function(event) {
-      const r = new FileReader();
       const file = event.target.files[0];
-
       getBase64(file).then(
         data => this.set('imageUrl',data),
       );
@@ -121,7 +116,6 @@ export default Component.extend({
           reader.onerror = error => reject(error);
         });
       }
-
     }
   }
 });
