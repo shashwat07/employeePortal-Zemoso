@@ -22,7 +22,7 @@
           <p id="textWhite">{{paper-icon 'today' class="white"}} Started {{employee.startDate}}</p>
         </div>
       </div>
-      {{#link-to 'edit-employee' employee}}
+      {{#link-to 'edit-employee' employee.id}}
         {{#paper-button raised=true primary=true}}Edit{{/paper-button}}
       {{/link-to}}
     </div>

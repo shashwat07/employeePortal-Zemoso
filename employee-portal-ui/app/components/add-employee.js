@@ -30,10 +30,6 @@ export default Component.extend({
   imageUrl : '',
   skillSet : '',
 
-  roles:['Software Developer','Senior Software Developer','Project Manager','Business Analyst'],
-  locations:['Bangalore', 'Hyderabad', 'Pune', 'Noida', 'New York', 'California', 'Moscow'],
-  departments:['HR','Business','Legal','Tech'],
-  projects:['Drone', 'Zededup', 'Push-Notification'],
   manager:'',
   names: ['Stefan', 'Miguel', 'Tomster', 'Pluto'],
 
@@ -57,8 +53,6 @@ export default Component.extend({
   }),
 
   actions: {
-
-
     addEmployee(){
       this.set('skillSet',this.get('skills').toString());
 
