@@ -82,7 +82,7 @@ export default Component.extend({
       }
       else{
         this.get('store').findRecord('employee', employeeData['id']).then(function(employee) {
-          employee.save();
+          employeeData.save();
         });
       }
       this.transitionTo('employees');
