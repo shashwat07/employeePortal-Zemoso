@@ -1,6 +1,7 @@
 {{header-tabs isPrimary=true}}
 <div class="custom-background-add">
-  <div class="layout-row layout-padding layout-align-center">
+  <div class="layout-row layout-padding layout-align-center flex">
+    <div class="flex-70">
     {{#paper-form onSubmit=(action "addEmployee") as |form|}}
       <div class="layout-column flex-40">
         <div class="layout-padding">
@@ -137,5 +138,6 @@
       </div>
       </div>
     {{/paper-form}}
+    </div>
   </div>
 </div>
