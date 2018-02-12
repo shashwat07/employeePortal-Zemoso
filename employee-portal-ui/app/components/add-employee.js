@@ -31,12 +31,13 @@ export default Component.extend({
   skillSet : '',
   routerTo: service('-routing'),
 
-names : computed(function () {
-    const self = this;
+  names : computed(function () {
     var empNames = this.get('store').findAll('employee').then(function(employee){
       var nameList = [];
+      var url = window.location.href;
+      var id = url.substring(url.lastIndexOf('/') + 1);
       employee.forEach(function (employee) {
-        if(employee.get('firstName')!= undefined){
+        if(employee.get('firstName')!= undefined && employee.get('id')!=id){
           nameList.push(employee.get('fullName'));
         }
       });
@@ -55,6 +56,18 @@ names : computed(function () {
   }),
 
   allSkills: A(['Ember','Java','HTML','CSS','JavaScript','Python', 'Ruby', 'Pearl', 'Angular']),
+
+  /*allSkills: computed(function () {
+    const self = this;
+    var skills = this.get('store').findAll('skill').then(function (skills) {
+      var skillSet = [];
+      skills.forEach(function (skill) {
+        skillSet.push(skill.get('name'));
+      });
+      return skillSet;
+    });
+    return A(skills);
+  }),*/
 
   remainingSkills: computed('skills.length', function() {
     return this.get('allSkills').filter((source) => {
