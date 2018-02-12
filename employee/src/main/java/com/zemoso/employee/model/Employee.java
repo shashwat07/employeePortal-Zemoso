@@ -16,9 +16,10 @@ import javax.persistence.*;
 @JsonIgnoreProperties
 @AllArgsConstructor
 @NoArgsConstructor
+@SequenceGenerator(name="seq", initialValue=1, allocationSize=1)
 public class Employee {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seq")
     private Long id;
     private String firstName;
     private String middleName;

@@ -3,16 +3,16 @@
   <div class="layout-row layout-padding layout-align-center">
     {{#paper-form onSubmit=(action "addEmployee") as |form|}}
       <div class="layout-column flex-40">
-        <div class="layout-padding" id="profile">
+        <div class="layout-padding">
           <div class="layout-column flex">
             <div class="layout-row flex">
-              <div class="layout-column flex-33">
+              <div class="layout-column flex">
                 {{form.input label="First Name" value=employee.firstName  primary=true onChange=(action (mut employee.firstName)) required=true maxlength=20}}
               </div>
-              <div class="layout-column flex-33">
+              <div class="layout-column flex">
                 {{form.input label="Middle Name" value=employee.middleName onChange=(action (mut employee.middleName)) maxlength=20}}
               </div>
-              <div class="layout-column flex-33">
+              <div class="layout-column flex">
                 {{form.input label="Last Name" value=employee.lastName onChange=(action (mut employee.lastName)) required=true maxlength=20}}
               </div>
             </div>
@@ -86,12 +86,13 @@
       </div>
 
       <div class="layout-column flex-30">
+      <div class="layout-padding">
+
         {{#paper-card}}
           <br>
           <div class="layout-column flex">
-            <img src={{employee.image}} alt="employee-img" class="image-rectangle">
+            <img src={{employee.image}} id="img-preview" alt="employee-img" class="image-rectangle">
             <input multiple="true" value="employee.image" onchange={{action "upload"}} accept="image/png,image/jpeg" type="file"/>
-            <!--<img id="blah" src=previewSrc />-->
           </div>
 
 
@@ -114,8 +115,8 @@
           {{paper-divider}}
 
           <p>{{paper-icon "assessment"}}  Reports To</p>
-          <div class="layout-column flex">
-            {{#paper-autocomplete placeholder="Employee reports to .." options=names selected=employee.reportsTo
+          <div class="layout-column">
+            {{#paper-autocomplete placeholder="Employee reports to .." options=managers selected=employee.reportsTo
                                   onSelectionChange=(action (mut employee.reportsTo)) as |item term|}}
                 <span>
                   {{paper-autocomplete-highlight searchText=term.searchText flags="i" label=item}}
@@ -124,15 +125,16 @@
               Whoops! could not find!
             {{/paper-autocomplete}}
           </div>
-          <div class="layout-row flex">
-            <div class="layout-column flex-50">
+          <div class="layout-row ">
+            <div class="layout-column flex">
               {{#form.submit-button raised=true primary=true}}Save{{/form.submit-button}}
             </div>
-            <div class="layout-column flex-50">
+            <div class="layout-column flex">
               {{#paper-button href='../employees' raised=true warn=true}}Cancel{{/paper-button}}
             </div>
           </div>
         {{/paper-card}}
+      </div>
       </div>
     {{/paper-form}}
   </div>

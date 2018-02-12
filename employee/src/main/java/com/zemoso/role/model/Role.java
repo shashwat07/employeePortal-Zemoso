@@ -13,9 +13,10 @@ import javax.persistence.*;
 @Table(name="role")
 @AllArgsConstructor
 @NoArgsConstructor
+@SequenceGenerator(name="seq", initialValue=1, allocationSize=1)
 public class Role {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seq")
     private int id;
     private String name;
 

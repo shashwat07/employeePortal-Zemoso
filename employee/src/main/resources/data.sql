@@ -32,3 +32,15 @@ INSERT INTO department (id, name) VALUES
   (4, 'Team Lead'),
   (5, 'CEO'),
   (6, 'HR Manager');
+
+  INSERT INTO skill (id, name) VALUES
+  (1, 'HTML'),
+  (2, 'CSS'),
+  (3, 'Ember'),
+  (4, 'Angular'),
+  (5, 'Polymer'),
+  (6, 'Java'),
+  (7,'JavaScript'),
+  (8, 'Python'),
+  (9, 'Ruby'),
+  (10, 'Rails');

@@ -29,10 +29,7 @@ export default Component.extend({
   updatedEmployee:{},
   imageUrl : '',
   skillSet : '',
-
-  manager:'',
-  names: ['Stefan', 'Miguel', 'Tomster', 'Pluto'],
-
+  routerTo: service('-routing'),
   skills: computed('employee.skillSet', function () {
     if(typeof this.get('employee.skillSet') === "undefined"){
       return A([]);
@@ -55,11 +52,11 @@ export default Component.extend({
   actions: {
     addEmployee(){
       this.set('skillSet',this.get('skills').toString());
-
       let employeeData = this.get('employee');
       employeeData['image'] = this.get('imageUrl');
       employeeData['skillSet'] = this.get('skillSet');
       let data;
+      const self = this;
       if(typeof employeeData['id'] === "undefined"){
         data = this.get('store').createRecord('employee',{
           firstName : employeeData['firstName'],
@@ -78,14 +75,17 @@ export default Component.extend({
           reportsTo: employeeData['reportsTo']
         });
 
-        data.save();
+        data.save().then(
+          self.get('routerTo').transitionTo('employees')
+        );
       }
       else{
         this.get('store').findRecord('employee', employeeData['id']).then(function(employee) {
-          employeeData.save();
+          employeeData.save().then(
+            self.get('routerTo').transitionTo('employees')
+          );
         });
       }
-      this.transitionTo('employees');
     },
 
     removeSkill(item) {
@@ -98,6 +98,16 @@ export default Component.extend({
 
     upload: function(event) {
       const file = event.target.files[0];
+
+      if(file){
+        let read = new FileReader();
+        read.onload = function(e){
+          $('#img-preview').attr('src', e.target.result);
+        };
+
+        read.readAsDataURL(file);
+      }
+
       getBase64(file).then(
         data => this.set('imageUrl',data),
       );

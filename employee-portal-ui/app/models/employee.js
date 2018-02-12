@@ -14,5 +14,10 @@ export default DS.Model.extend({
   image: DS.attr(),
   department: DS.attr(),
   project: DS.attr(),
-  reportsTo: DS.attr()
+  reportsTo: DS.attr(),
+
+  fullName: Ember.computed('firstName', 'lastName', function() {
+    return `${this.get('firstName')} ${this.get('lastName')}`;
+  })
+
 });
