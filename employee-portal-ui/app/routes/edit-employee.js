@@ -8,7 +8,6 @@ export default Route.extend({
       location: this.get('store').findAll('location'),
       project:  this.get('store').findAll('project'),
       role:  this.get('store').findAll('role'),
-      employee : this.get('store').peekAll('employee')
     });
   },
   setupController(controller, model) {
@@ -17,7 +16,6 @@ export default Route.extend({
     let locationList = [];
     let projectList = [];
     let roleList = [];
-    let employeeList = [];
 
     model.department.forEach(function (department) {
       departmentList.push(department.get('name'))
@@ -29,12 +27,6 @@ export default Route.extend({
     });
     controller.set('locations',locationList);
 
-    model.employee.forEach(function (employee) {
-      employeeList.push(employee.get('fullName'))
-    });
-    controller.set('employees',employeeList);
-    console.log(employeeList);
-
     model.project.forEach(function (project) {
       projectList.push(project.get('name'))
     });
@@ -44,9 +36,6 @@ export default Route.extend({
       roleList.push(role.get('name'))
     });
     controller.set('roles',roleList);
-    console.log(roleList);
-
-
   }
 
 });

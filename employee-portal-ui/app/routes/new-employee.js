@@ -20,13 +20,7 @@ export default Route.extend({
     let locationList = [];
     let projectList = [];
     let roleList = [];
-    let managerList = [];
     let skillList = [];
-
-    model.employee.forEach(function (employee) {
-      managerList.push(employee.get('fullName'))
-    });
-    controller.set('managers',managerList);
 
     model.department.forEach(function (department) {
       departmentList.push(department.get('name'))

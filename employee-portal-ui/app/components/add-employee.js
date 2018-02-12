@@ -30,6 +30,21 @@ export default Component.extend({
   imageUrl : '',
   skillSet : '',
   routerTo: service('-routing'),
+
+names : computed(function () {
+    const self = this;
+    var empNames = this.get('store').findAll('employee').then(function(employee){
+      var nameList = [];
+      employee.forEach(function (employee) {
+        if(employee.get('firstName')!= undefined){
+          nameList.push(employee.get('fullName'));
+        }
+      });
+      return nameList;
+    });
+    return empNames;
+  }),
+
   skills: computed('employee.skillSet', function () {
     if(typeof this.get('employee.skillSet') === "undefined"){
       return A([]);
